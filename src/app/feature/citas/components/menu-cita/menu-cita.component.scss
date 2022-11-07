@@ -1,0 +1,21 @@
+.container{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 50px;
+  margin: 8%;
+  justify-content: center;
+
+}
+.card-descripcion{
+  text-align: center;
+  height: 100%;
+  mat-card{
+    box-shadow: 5px 5px 10px 0px rgba(0, 128, 0, 0.541);
+  }
+  .mat-raised-button{
+    background-color: rgb(28, 180, 28);
+  }
+  img{
+    width: 50%;
+  }
+}

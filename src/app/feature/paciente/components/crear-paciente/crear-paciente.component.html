@@ -1,0 +1,52 @@
+<div class="container">
+  <mat-card>
+    <mat-card-title>Datos del paciente</mat-card-title><br>
+    <mat-card-content>
+
+      <form [formGroup]="form" (ngSubmit)="guardarPaciente()">
+        <div class="id">
+          <mat-form-field appearance="fill">
+            <mat-label>Documento de identidad</mat-label>
+            <input matInput type="number" formControlName="id" />
+            <mat-icon matSuffix *ngIf="esIdValido">done</mat-icon>
+            <mat-icon matSuffix *ngIf="esIdInvalido">close</mat-icon>
+            <mat-error *ngIf="idCampo.hasError('required') && idCampo.touched">Este campo es requerido
+            </mat-error>
+            <mat-error *ngIf="idCampo.hasError('maxlength')">Debe tener maximo 10 caracteres</mat-error>
+            <mat-error *ngIf="idCampo.hasError('existe')">
+              Este usuario ya existe
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="nombre">
+          <mat-form-field appearance="fill">
+            <mat-label>Nombre completo</mat-label>
+            <input matInput type="text" formControlName="nombre" />
+            <mat-icon matSuffix *ngIf="esNombreValido">done</mat-icon>
+            <mat-icon matSuffix *ngIf="esNombreInvalido">close</mat-icon>
+            <mat-error *ngIf="nombreCampo.hasError('required') && nombreCampo.touched">Este campo es requerido
+            </mat-error>
+            <mat-error *ngIf="nombreCampo.hasError('minlength')">Debe tener maximo 10 caracteres</mat-error>
+            <mat-error *ngIf="nombreCampo.hasError('pattern')">No debe tener caracteres especiales</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="tipoPaciente">
+
+            <h4>Tipo de paciente:</h4>   <br><br>
+            <p>
+            <label for=""> <input name="tipoPaciente" type="radio" value="CONTRIBUTIVO" formControlName="tipoPaciente">
+              Contributivo
+            </label>
+            <label for=""> <input name="tipoPaciente" type="radio" value="SUBSIDIADO" formControlName="tipoPaciente">
+              Subsidiado
+            </label>
+          </p>
+          <p style="color: red;" *ngIf="tipoCampo.hasError('required') && tipoCampo.touched" >Debe seleccionar un tipo</p>
+        </div>
+        <p>
+          <button mat-button type="submit">Registrar</button>
+        </p>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

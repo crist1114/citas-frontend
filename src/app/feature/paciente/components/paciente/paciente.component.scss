@@ -1,0 +1,33 @@
+.container{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 50px;
+  margin: 5%;
+  justify-content: center;
+
+}
+.container-2{
+  grid-gap: 80px;
+  margin: 5%;
+  justify-content: center;
+  margin-bottom: 50px;
+  img{
+    height: 25em;
+  }
+}
+.dsc-footer{
+    height: 60px;
+}
+.card-descripcion{
+  text-align: center;
+  height: 100%;
+  mat-card{
+    box-shadow: 5px 5px 10px 0px rgba(0, 128, 0, 0.541);
+  }
+  .mat-raised-button{
+    background-color: rgb(28, 180, 28);
+  }
+  img{
+    width: 50%;
+  }
+}

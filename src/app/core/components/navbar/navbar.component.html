@@ -1,0 +1,42 @@
+<div class="show-mobile">
+  <div>
+    <button mat-button (click)="menu()">
+      <mat-icon>format_align_left</mat-icon>
+    </button>
+    <a href="">
+      <img style="width: 80%;" src="./assets/img/logo.png" alt="logo">
+    </a>
+
+  </div>
+  <div class="side-menu" [class.active]="activarMenu">
+    <button mat-button (click)="menu()" color="primary">Close</button>
+    <ul>
+      <li><a routerLink="paciente" mat-raised-button color="accent">Pacientes</a></li>
+      <br>
+      <li><a routerLink="citas" mat-raised-button color="accent">Citas</a></li>
+    </ul>
+  </div>
+</div>
+<div class="hide-mobile">
+  <div>
+    <nav>
+      <a class="logo" href="">
+        <img class="imgLogo" src="./assets/img/logo.png" alt="logo">
+      </a>
+    </nav>
+    <div class="info">
+      <div class="navbar-buttons">
+        <div class="vinculo">
+          <a routerLinkActive="active" color="accent" [routerLink]="['/paciente']">
+            <h4>Pacientes</h4>
+          </a>
+        </div>
+        <div class="vinculo">
+          <a routerLinkActive="active" color="accent" [routerLink]="['/citas']">
+            <h4>Citas</h4>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

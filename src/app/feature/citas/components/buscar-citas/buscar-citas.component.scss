@@ -1,0 +1,24 @@
+table{
+  width: 100%;
+}
+.mat-header-cell, .mat-cell {
+  text-align: center;
+}
+.mat-button{
+  margin: 2%;
+  color: white;
+}
+.container{
+  display: block;
+  margin: 4% 10% 10% 10%;
+  text-align: center;
+}
+.cancelar{
+  background-color: red;
+}
+.confirmar{
+  background-color: green;
+}
+.footer{
+  height: 70px;
+}

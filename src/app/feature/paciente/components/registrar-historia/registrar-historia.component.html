@@ -1,0 +1,52 @@
+<div class="container">
+  <mat-card>
+    <mat-card-title>Datos del paciente</mat-card-title><br>
+    <mat-card-content>
+
+      <form [formGroup]="form" (ngSubmit)="guardarHistoria()">
+        <div class="idPaciente">
+          <mat-form-field appearance="fill">
+            <mat-label>Documento de identidad</mat-label>
+            <input matInput type="number" formControlName="idPaciente" />
+            <mat-icon matSuffix *ngIf="esIdPacienteValido">done</mat-icon>
+            <mat-icon matSuffix *ngIf="esIdPacienteInvalido">close</mat-icon>
+            <mat-error *ngIf="idPacienteCampo.hasError('required') && idPacienteCampo.touched">Este campo es requerido
+            </mat-error>
+            <mat-error *ngIf="idPacienteCampo.hasError('maxlength')">Debe tener maximo 10 caracteres</mat-error>
+            <mat-error *ngIf="idPacienteCampo.hasError('no_existe')">
+              Este usuario no existe debe registrarse primero
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="fechaEmision">
+          <mat-form-field appearance="fill">
+            <mat-label>Fecha de emision</mat-label>
+            <input formControlName="fechaEmision" [max]="maxDate" matInput [matDatepicker]="picker">
+            <mat-hint>YYYY/MM/DD</mat-hint>
+            <mat-datepicker-toggle matSuffix  [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="fechaCampo.hasError('required') && fechaCampo.touched">Este campo es requerido
+            </mat-error>
+            <mat-error *ngIf="fechaCampo.hasError('maxlength')">Debe tener maximo 10 caracteres</mat-error>
+            <mat-error *ngIf="fechaCampo.hasError('pattern')">No debe tener caracteres</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="ubicacion">
+          <mat-form-field>
+            <mat-label>Ubicacion</mat-label>
+            <mat-select formControlName="ubicacion">
+            <mat-option [value]="ubicacion" *ngFor="let ubicacion of ubicaciones">
+            {{ ubicacion }}
+            </mat-option>
+            </mat-select>
+            <mat-error *ngIf="ubicacionCampo.hasError('required') && ubicacionCampo.touched">Debe seleccionar una ubicacion
+            </mat-error>
+            </mat-form-field>
+        </div>
+        <p>
+          <button mat-button type="submit">Registrar historia</button>
+        </p>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

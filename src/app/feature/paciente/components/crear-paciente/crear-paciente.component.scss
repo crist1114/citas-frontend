@@ -1,0 +1,31 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+.container{
+  display: block;
+  margin: 5%;
+  margin-left: 30%;
+  margin-right: 30%;
+  text-align: center;
+}
+mat-form-field{
+  width: 100%;
+}
+mat-card{
+  width: 100%;
+}
+.mat-button{
+  background-color: rgb(42, 180, 42);
+  color: white;
+}
+mat-card-title{color: green;}
+.id{
+  width: 50%;
+  margin: 0px auto;
+}
+.nombre{
+  width: 80%;
+  margin: 20px auto;
+}
+.tipoPaciente{
+  width: 100%;
+  margin: 20px auto;
+}

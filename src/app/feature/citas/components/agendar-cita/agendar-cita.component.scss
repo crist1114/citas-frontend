@@ -1,0 +1,43 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+.container{
+  display: block;
+  margin: 5%;
+  margin-left: 20%;
+  margin-right: 20%;
+  text-align: center;
+}
+.row{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+mat-form-field{
+  width: 100%;
+}
+mat-card{
+  width: 100%;
+}
+.mat-button{
+  background-color: rgb(42, 180, 42);
+  color: white;
+}
+mat-card-title{color: green;}
+.idPaciente{
+  width: 80%;
+  margin: 0px auto;
+}
+.valor{
+  width: 80%;
+  margin: 0px auto;
+}
+.fecha{
+  width: 50%;
+  margin: auto;
+}
+.tipoProcedimiento{
+  width: 100%;
+  margin: 10px auto;
+}
+.hora{
+  width: 80%;
+  margin: 10px auto;
+}

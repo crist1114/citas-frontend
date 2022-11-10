@@ -8,6 +8,9 @@ import { ErrorCamposPlantillaComponent } from './directivas/error-campos/compone
 import { ReactiveFormsModule } from '@angular/forms';
 import { TrackByPipe } from './pipe/track-by.pipe';
 import { MaterialModule } from './material/material.module';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
@@ -20,7 +23,12 @@ import { MaterialModule } from './material/material.module';
   ],
   imports: [
     ReactiveFormsModule,
-    MaterialModule],
+    MaterialModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    MatInputModule,
+
+  ],
   exports: [
     CommonModule,
     HttpClientModule,
@@ -29,7 +37,10 @@ import { MaterialModule } from './material/material.module';
     // MensajeErrorCamposSubmitDirective,
     ReactiveFormsModule,
     TrackByPipe,
-    MaterialModule
+    MaterialModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule
   ]
 })
 export class SharedModule { }

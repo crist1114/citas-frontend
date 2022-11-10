@@ -2,7 +2,12 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 20px;
+
 }
+.fondo{
+  height: 75.7%;
+}
+
 
 .card-descripcion{
   justify-content: center;

@@ -13,6 +13,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { LayoutComponent } from './components/layout/layout.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { SharedModule } from '@shared/shared.module';
 
 @NgModule({
   declarations: [NavbarComponent, LayoutComponent, FooterComponent],
@@ -21,7 +22,8 @@ import { FooterComponent } from './components/footer/footer.component';
     RouterModule,
     HttpClientModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    SharedModule
   ],
   exports: [NavbarComponent, FooterComponent],
   providers: [

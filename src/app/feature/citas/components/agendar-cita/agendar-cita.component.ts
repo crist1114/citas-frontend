@@ -46,6 +46,7 @@ export class AgendarCitaComponent implements OnInit {
     let horasNoDisp = this.citasPorFecha.map((item) => item.hora);
     this.horasDisp = []
     for (let i = INICIO_HORARIO; i <= LIMITE_HORARIO; i++) {
+
       if (!horasNoDisp.includes(i + ":00:00")) {
         const hora = i < 10 ? "0"+i+":00" : i+":00";
         this.horasDisp.push(hora);
@@ -74,7 +75,6 @@ export class AgendarCitaComponent implements OnInit {
           this.router.navigate(['../../../citas/buscar-cita']);
         },
         error=>{
-
           this.mostrarError(error.error);
         })
     }
@@ -126,7 +126,6 @@ export class AgendarCitaComponent implements OnInit {
   }
 
   valorNoValido() {
-
     return this.form.hasError('valor_invalido') && this.valorCampo.touched;
   }
 

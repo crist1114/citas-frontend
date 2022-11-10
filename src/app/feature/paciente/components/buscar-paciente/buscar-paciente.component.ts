@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Paciente } from '@core/modelo/paciente.model';
@@ -15,7 +15,7 @@ export interface PeriodicElement {
   templateUrl: './buscar-paciente.component.html',
   styleUrls: ['./buscar-paciente.component.scss']
 })
-export class BuscarPacienteComponent implements OnInit, AfterViewInit {
+export class BuscarPacienteComponent implements OnInit{
 
   displayedColumns: string[] = ['Identificacion', 'Nombre', 'Tipo'];
   dataSource:any;
@@ -25,9 +25,6 @@ export class BuscarPacienteComponent implements OnInit, AfterViewInit {
   constructor(private pacienteService: PacienteService) {
 
    }
-  ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
-  }
 
   ngOnInit(): void {
     this.obtenerPacientes();
@@ -43,6 +40,7 @@ export class BuscarPacienteComponent implements OnInit, AfterViewInit {
     .subscribe(data =>{
       this.ELEMENT_DATA = data;
       this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+      this.dataSource.paginator = this.paginator;
     });
   }
 

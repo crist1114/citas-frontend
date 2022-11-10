@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Cita } from '@core/modelo/Cita.modelo';
@@ -17,7 +17,7 @@ export interface PeriodicElement {
   templateUrl: './buscar-citas.component.html',
   styleUrls: ['./buscar-citas.component.scss']
 })
-export class BuscarCitasComponent implements OnInit, AfterViewInit {
+export class BuscarCitasComponent implements OnInit {
 
   displayedColumns: string[] = ['idPaciente', 'tipoProcedimiento', 'fecha', 'hora', 'estado','acciones'];
   dataSource: any;
@@ -26,9 +26,6 @@ export class BuscarCitasComponent implements OnInit, AfterViewInit {
 
   constructor(private citaService: CitaService) {
 
-  }
-  ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
   }
 
   ngOnInit(): void {
@@ -45,14 +42,15 @@ export class BuscarCitasComponent implements OnInit, AfterViewInit {
       .subscribe((data) => {
         this.ELEMENT_DATA = data;
         this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+        this.dataSource.paginator = this.paginator;
       })
   }
 
   cancelar(id:number){
     this.citaService.cancelarCita(id)
-    .subscribe(()=> {
+    .subscribe(()=>{
       window.location.reload();
-    })
+    });
   }
 
   confirmar(id:number){

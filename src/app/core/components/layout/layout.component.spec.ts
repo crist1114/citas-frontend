@@ -1,4 +1,8 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ChildrenOutletContexts, RouterOutlet } from '@angular/router';
+import { FooterComponent } from '../footer/footer.component';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 import { LayoutComponent } from './layout.component';
 
@@ -8,7 +12,10 @@ describe('LayoutComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LayoutComponent ]
+      declarations: [ LayoutComponent, RouterOutlet, NavbarComponent, FooterComponent ],
+      imports: [],
+      providers: [ChildrenOutletContexts],
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   });

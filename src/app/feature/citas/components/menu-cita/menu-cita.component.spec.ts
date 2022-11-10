@@ -1,5 +1,5 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { MenuCitaComponent } from './menu-cita.component';
 
 describe('MenuCitaComponent', () => {
@@ -8,7 +8,8 @@ describe('MenuCitaComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MenuCitaComponent ]
+      declarations: [ MenuCitaComponent ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
   });

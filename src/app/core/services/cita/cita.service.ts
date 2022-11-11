@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Cita } from '@core/modelo/Cita.modelo';
+import { Cita } from '../../modelo/cita.modelo';
 import { environment } from 'src/environments/environment';
 
 @Injectable({

@@ -15,7 +15,7 @@ const TAMANIO_MAXIMO_DOCUMENTO = 10;
 export class RegistrarHistoriaComponent implements OnInit {
 
   form: FormGroup;
-  ubicaciones = ['CASILLERO_1','CASILLERO_2','CASILLERO_3','CASILLERO_4']
+  ubicaciones = ['CASILLERO_1','CASILLERO_2','CASILLERO_3','CASILLERO_4'];
   maxDate = new Date();
 
   constructor(private formBuilder: FormBuilder, private pacienteService: PacienteService,

@@ -43,7 +43,7 @@ export class BuscarCitasComponent implements OnInit {
         this.ELEMENT_DATA = data;
         this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
         this.dataSource.paginator = this.paginator;
-      })
+      });
   }
 
   cancelar(id:number){
@@ -57,7 +57,7 @@ export class BuscarCitasComponent implements OnInit {
     this.citaService.confirmarCita(id)
     .subscribe(() => {
       window.location.reload();
-    })
+    });
   }
 
 }

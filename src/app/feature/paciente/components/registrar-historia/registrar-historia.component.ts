@@ -5,6 +5,8 @@ import { PacienteService } from '@core/services/paciente/paciente.service';
 import { MyValidators } from '@shared/validators/MyValidators';
 import * as moment from 'moment';
 
+const TAMANIO_MAXIMO_DOCUMENTO = 10;
+
 @Component({
   selector: 'app-registrar-historia',
   templateUrl: './registrar-historia.component.html',
@@ -13,7 +15,7 @@ import * as moment from 'moment';
 export class RegistrarHistoriaComponent implements OnInit {
 
   form: FormGroup;
-  ubicaciones = ["CASILLERO_1","CASILLERO_2","CASILLERO_3","CASILLERO_4"]
+  ubicaciones = ['CASILLERO_1','CASILLERO_2','CASILLERO_3','CASILLERO_4']
   maxDate = new Date();
 
   constructor(private formBuilder: FormBuilder, private pacienteService: PacienteService,
@@ -34,7 +36,7 @@ export class RegistrarHistoriaComponent implements OnInit {
       this.pacienteService.createHistoriaPaciente(this.form.value)
       .subscribe(()=>{
         this.router.navigate(['../paciente/buscar']);
-      })
+      });
     }else{
       this.form.markAllAsTouched();
 
@@ -44,20 +46,20 @@ export class RegistrarHistoriaComponent implements OnInit {
 
   private construirFormulario(){
     this.form  = this.formBuilder.group({
-      idPaciente: ['', [Validators.required, Validators.maxLength(10)], [MyValidators.validarPacienteNoExiste(this.pacienteService)]],
+      idPaciente: ['', [Validators.required, Validators.maxLength(TAMANIO_MAXIMO_DOCUMENTO)], [MyValidators.validarPacienteNoExiste(this.pacienteService)]],
       fechaEmision: ['', Validators.required],
       ubicacion: ['', Validators.required]
-    })
+    });
   }
 
   get idPacienteCampo(){
-    return this.form.get("idPaciente");
+    return this.form.get('idPaciente');
   }
   get fechaCampo(){
-    return this.form.get("fechaEmision");
+    return this.form.get('fechaEmision');
   }
   get ubicacionCampo(){
-    return this.form.get("ubicacion");
+    return this.form.get('ubicacion');
   }
 
   get esIdPacienteInvalido() {

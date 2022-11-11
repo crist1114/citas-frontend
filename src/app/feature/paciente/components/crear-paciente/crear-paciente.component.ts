@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { PacienteService } from '@core/services/paciente/paciente.service';
 import { MyValidators } from '@shared/validators/MyValidators';
 
+const TAMANIO_MAXIMO_DOCUMENTO = 10;
+const TAMANIO_MAXIMO_CARACTERES_NOMBRE = 10;
+
 @Component({
   selector: 'app-crear-paciente',
   templateUrl: './crear-paciente.component.html',
@@ -29,21 +32,21 @@ export class CrearPacienteComponent implements OnInit {
       this.pacienteService.createPaciente(paciente)
       .subscribe(()=>{
         this.router.navigate(['../../../citas/agendar-cita']);
-      })
+      });
 
 
     }else{
-       this.form.markAllAsTouched()
+       this.form.markAllAsTouched();
     }
 
   }
 
   private construirFormulario(){
     this.form  = this.formBuilder.group({
-      id: ['', [Validators.required, Validators.maxLength(10)], [MyValidators.validarPaciente(this.pacienteService)] ],
-      nombre: ['', [Validators.required, Validators.pattern(/^[a-zA-Z ]+$/), Validators.minLength(10)]],
+      id: ['', [Validators.required, Validators.maxLength(TAMANIO_MAXIMO_DOCUMENTO)], [MyValidators.validarPaciente(this.pacienteService)] ],
+      nombre: ['', [Validators.required, Validators.pattern(/^[a-zA-Z ]+$/), Validators.minLength(TAMANIO_MAXIMO_CARACTERES_NOMBRE)]],
       tipoPaciente: ['', Validators.required]
-    })
+    });
   }
   get tipoCampo(){
     return this.form.get('tipoPaciente');

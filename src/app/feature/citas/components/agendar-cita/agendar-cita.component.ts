@@ -1,7 +1,7 @@
 import Swal from 'sweetalert2'
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Cita } from '@core/modelo/Cita.modelo';
+import { Cita } from '../../../../core/modelo/cita.modelo';
 import { CitaService } from '@core/services/cita/cita.service';
 import { PacienteService } from '@core/services/paciente/paciente.service';
 import { MyValidators } from '@shared/validators/MyValidators';

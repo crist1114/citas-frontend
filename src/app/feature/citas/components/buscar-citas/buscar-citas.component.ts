@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { Cita } from '@core/modelo/Cita.modelo';
+import { Cita } from '../../../../core/modelo/cita.modelo';
 import { CitaService } from '@core/services/cita/cita.service';
 export interface PeriodicElement {
   acciones: string;

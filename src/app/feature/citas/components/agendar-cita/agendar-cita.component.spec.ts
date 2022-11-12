@@ -16,6 +16,7 @@ describe('AgendarCitaComponent', () => {
   let fixture: ComponentFixture<AgendarCitaComponent>;
 
   beforeEach(async () => {
+
     await TestBed.configureTestingModule({
       declarations: [AgendarCitaComponent],
       imports: [
@@ -40,7 +41,6 @@ describe('AgendarCitaComponent', () => {
     fixture = TestBed.createComponent(AgendarCitaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-
   });
 
   it('deberia crearse', () => {

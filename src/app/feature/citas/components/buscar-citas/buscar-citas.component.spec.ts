@@ -1,35 +1,50 @@
-import { HttpClient, HttpHandler } from '@angular/common/http';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatIconModule } from '@angular/material/icon';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableModule } from '@angular/material/table';
+import { of } from 'rxjs';
 import { BuscarCitasComponent } from './buscar-citas.component';
+import {  TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { CitaService } from '@core/services/cita/cita.service';
 
 describe('BuscarCitasComponent', () => {
-  let component: BuscarCitasComponent;
-  let fixture: ComponentFixture<BuscarCitasComponent>;
+  let citaServiceSpy: jasmine.SpyObj<CitaService>; //servicio a mockear
+  let buscarCitasComponent : BuscarCitasComponent;
+
+
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ BuscarCitasComponent ],
-      imports: [
-        MatIconModule,
-        MatTableModule
-    ],
-    providers: [HttpClient, HttpHandler,MatPaginator],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    })
-    .compileComponents();
+
+    const spy = jasmine.createSpyObj('CitaService', ['getCitas', 'cancelarCita']);
+
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      providers: [
+        BuscarCitasComponent,
+        {provide: CitaService, useValue: spy}, //proveo el mock,
+      ]
+    });
+
+    buscarCitasComponent = TestBed.inject(BuscarCitasComponent)
+    citaServiceSpy = TestBed.inject(CitaService) as jasmine.SpyObj<CitaService>;
+
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(BuscarCitasComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  it('deberia crearse', () => {
+    expect(buscarCitasComponent).toBeTruthy();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('deberian crearse las columnas', () => {
+    expect(buscarCitasComponent.displayedColumns).toEqual(['idPaciente', 'tipoProcedimiento', 'fecha', 'hora', 'estado','acciones']);
+  });
+
+  it('deberia element data ser vacio', () => {
+    expect(buscarCitasComponent.ELEMENT_DATA).toEqual([]);
+  });
+
+  it('deberia obtenerCitas llenar el datasource', () => {
+
+    const data = [{ id: 1, estado: 'NO_ATENDIDA', fecha: new Date(), hora: '15:00:00', idPaciente: 1090, tipoProcedimiento: 'LIMPIEZA', valor: 55000 }]
+    citaServiceSpy.getCitas.and.returnValue(of(data));
+
+    buscarCitasComponent.obtenerCitas();
+    expect(buscarCitasComponent.dataSource.data).toEqual(data);
   });
 });

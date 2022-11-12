@@ -20,7 +20,7 @@ export interface PeriodicElement {
 export class BuscarCitasComponent implements OnInit {
 
   displayedColumns: string[] = ['idPaciente', 'tipoProcedimiento', 'fecha', 'hora', 'estado','acciones'];
-  dataSource: any;
+  dataSource: MatTableDataSource<Cita>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   ELEMENT_DATA: Cita[] = [];
 

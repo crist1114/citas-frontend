@@ -74,11 +74,9 @@ export class AgendarCitaComponent implements OnInit {
       this.form.patchValue({ fecha });
 
       this.citaService.crearCita(this.form.value)
-        .subscribe(() =>{
-          this.router.navigate(['../../../citas/buscar-cita']);
-        },
-        error=>{
-          this.mostrarError(error.error);
+        .subscribe({
+          next : ()=> this.router.navigate(['../../../citas/buscar-cita']),
+          error: (e)=> this.mostrarError(e.error),
         });
     }
     else {

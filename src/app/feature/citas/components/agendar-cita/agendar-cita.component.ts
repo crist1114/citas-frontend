@@ -66,8 +66,8 @@ export class AgendarCitaComponent implements OnInit {
       });
   }
 
-  guardarCita(evento) {
-    evento.preventDefault();
+  guardarCita() {
+    // evento.preventDefault();
 
     if (this.form.valid) {
       const fecha = moment(this.form.get('fecha').value).format('YYYY-MM-DD');

@@ -20,7 +20,8 @@ describe('Footer', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('deberia crearse', () => {
     expect(component).toBeTruthy();
+    expect(component).toBeInstanceOf(FooterComponent);
   });
 });

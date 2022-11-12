@@ -1,5 +1,4 @@
-import { Component, Input } from '@angular/core';
-import { MenuItem } from '@core/modelo/menu-item';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -8,14 +7,12 @@ import { MenuItem } from '@core/modelo/menu-item';
 })
 export class NavbarComponent {
 
-  @Input() items: MenuItem[];
   activarMenu=false;
 
 
   menu(){
     this.activarMenu = !this.activarMenu;
   }
-  login(){}
 
 
 }

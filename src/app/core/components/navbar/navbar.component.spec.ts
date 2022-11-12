@@ -23,7 +23,16 @@ describe('NavbarComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('deberia crearse', () => {
     expect(component).toBeTruthy();
+    expect(component).toBeInstanceOf(NavbarComponent);
   });
+
+  it('deberia activar el menú', () => {
+    expect(component).toBeTruthy();
+    expect(component.activarMenu).toBeFalse();
+    component.menu();
+    expect(component.activarMenu).toBeTrue();
+  });
+
 });

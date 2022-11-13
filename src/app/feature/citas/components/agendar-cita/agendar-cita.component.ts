@@ -94,7 +94,7 @@ export class AgendarCitaComponent implements OnInit {
 
   private construirFormulario() {
     this.form = this.formBuilder.group({
-      idPaciente: ['', [Validators.required, Validators.required, Validators.maxLength(TAMANIO_MAXIMO_DOCUMENTO)], [MyValidators.validarPacienteNoExiste(this.pacienteService)]],
+      idPaciente: ['', [Validators.required, Validators.maxLength(TAMANIO_MAXIMO_DOCUMENTO)], [MyValidators.validarPacienteNoExiste(this.pacienteService)]],
       tipoProcedimiento: ['', Validators.required],
       valor: ['', [Validators.required]],
       fecha: [this.minDate, [Validators.required, MyValidators.validarDia]],

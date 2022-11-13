@@ -56,7 +56,6 @@ describe('AgendarCitaComponent', () => {
     component.citasPorFecha = [{ id: 1, estado: 'NO_ATENDIDA', fecha: new Date(), hora: '15:00:00', idPaciente: 1090, tipoProcedimiento: 'LIMPIEZA', valor: 55000 }]
     component.cargarHoras();
     expect(component.horasDisp.length).toBe(9);
-
   });
 
   it('deberia ser maxDate mayor a minDate por 7 dias', () => {
@@ -66,7 +65,6 @@ describe('AgendarCitaComponent', () => {
   });
 
   it('deberia ser formulario invalido', () => {
-
     component.form.get('idPaciente').setValue(10);
     component.form.get('tipoProcedimiento').setValue('LIMPIEZA');
     expect(component.form.invalid).toBeFalse();
@@ -93,13 +91,23 @@ describe('AgendarCitaComponent', () => {
   });
 
   it('deberia ser paciente invalido', () => {
+    component.form.get('idPaciente').setValue('');
+    expect(component.idPacienteCampo.invalid).toBeTrue();
+
     component.form.markAllAsTouched();
     expect(component.esIdPacienteInvalido).toBeTrue();
   });
 
-  it('deberia ser valor no valido', () => {
-    component.form.markAllAsTouched();
+  it('deberia ser fecha invalido', () => {
+    component.form.get('fecha').setValue('');
+    expect(component.fechaCampo.invalid).toBeTrue();
 
+    component.form.get('fecha').setValue('2022-12-12');
+    expect(component.fechaCampo.invalid).withContext('dia no laboral').toBeTrue();
+  });
+
+  it('deberia ser valor no valido', () => {
+    expect(component.valorCampo.invalid).toBeTruthy();
     expect(component.valorNoValido()).toBeFalse();
   });
 });

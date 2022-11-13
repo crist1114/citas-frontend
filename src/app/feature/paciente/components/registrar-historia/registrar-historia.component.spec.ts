@@ -8,6 +8,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
+import { PacienteService } from '@core/services/paciente/paciente.service';
+import { of } from 'rxjs';
 
 
 import { RegistrarHistoriaComponent } from './registrar-historia.component';
@@ -75,5 +77,48 @@ describe('RegistrarHistoriaComponent', () => {
   it('deberia ser idPaciente invalido', ()=>{
     component.form.markAllAsTouched();
     expect(component.esIdPacienteInvalido).toBeTrue();
+  });
+});
+
+describe('RegistrarHistoriaComponent', () => {
+  let pacienteServiceSpy: jasmine.SpyObj<PacienteService>; //servicio a mockear
+  let registrarHistoriaComponent : RegistrarHistoriaComponent;
+
+  beforeEach(async () => {
+
+    const spy = jasmine.createSpyObj('PacienteService', ['createHistoriaPaciente']);
+
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule, RouterTestingModule,],
+      providers: [
+        FormsModule,
+        ReactiveFormsModule,
+        MatIconModule,
+        FormBuilder,
+        MatSelectModule,
+        MatFormFieldModule,
+        MatInputModule,
+        BrowserAnimationsModule,
+        HttpClientTestingModule,
+        RegistrarHistoriaComponent,
+        {provide: PacienteService, useValue: spy}, //proveo el mock,
+      ]
+    });
+
+    registrarHistoriaComponent = TestBed.inject(RegistrarHistoriaComponent)
+    pacienteServiceSpy = TestBed.inject(PacienteService) as jasmine.SpyObj<PacienteService>;
+  });
+
+  it('deberian entrar a crear historia', () => {
+    const formBuilder = new FormBuilder();
+    const form  = formBuilder.group({
+      idPaciente: [''],
+      fechaEmision: [''],
+      ubicacion: ['']
+    });
+    registrarHistoriaComponent.form = form;
+    pacienteServiceSpy.createHistoriaPaciente.and.returnValue(of());
+    registrarHistoriaComponent.guardarHistoria();
+    expect(pacienteServiceSpy.createHistoriaPaciente).toHaveBeenCalled();
   });
 });

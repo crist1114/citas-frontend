@@ -1,13 +1,17 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
+import { Cita } from '@core/modelo/cita.modelo';
+import { CitaService } from '@core/services/cita/cita.service';
+import { of, throwError } from 'rxjs';
 import { AgendarCitaComponent } from './agendar-cita.component';
 
 
@@ -80,7 +84,7 @@ describe('AgendarCitaComponent', () => {
     expect(component.tipoProcedimientoCampo.value).toBe('LIMPIEZA');
     expect(component.form.get('valor').value).toBe(55000);
     expect(component.form.get('fecha').value).toBe('2022-11-12');
-    expect(component.form.get('hora').value).toBe('15:00:00');
+    expect(component.horaCampo.value).toBe('15:00:00');
   });
 
   it('deberia marcar todo como tocado', () => {
@@ -95,8 +99,64 @@ describe('AgendarCitaComponent', () => {
 
   it('deberia ser valor no valido', () => {
     component.form.markAllAsTouched();
-    expect(component.valorNoValido).toBeTruthy();
+
+    expect(component.valorNoValido()).toBeFalse();
+  });
+});
+
+describe('AgendarCitasComponent', () => {
+  let citaServiceSpy: jasmine.SpyObj<CitaService>; //servicio a mockear
+  let agendarCitaComponent : AgendarCitaComponent;
+
+  beforeEach(async () => {
+
+    const spy = jasmine.createSpyObj('CitaService', ['getCitas', 'crearCita', 'getCitasPorFecha']);
+
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule, RouterTestingModule,],
+      providers: [
+        FormsModule,
+        ReactiveFormsModule,
+        MatIconModule,
+        FormBuilder,
+        MatSelectModule,
+        MatFormFieldModule,
+        MatInputModule,
+        BrowserAnimationsModule,
+        HttpClientTestingModule,
+        AgendarCitaComponent,
+        {provide: CitaService, useValue: spy}, //proveo el mock,
+      ]
+    });
+
+    agendarCitaComponent = TestBed.inject(AgendarCitaComponent)
+    citaServiceSpy = TestBed.inject(CitaService) as jasmine.SpyObj<CitaService>;
   });
 
+  it('deberian consultar citas por fecha', () => {
+    const fechaMock = new Date();
+    const citaMock : Cita = {id: 1, estado: 'NO_ATENDIDA', idPaciente:1090,tipoProcedimiento:'LIMPIEZA',fecha: new Date(), hora: '13:00:00', valor: 3500}
+    citaServiceSpy.getCitasPorFecha.and.returnValue(of([citaMock]));
+    agendarCitaComponent.consultarPorFecha(fechaMock);
+    expect(agendarCitaComponent.citasPorFecha).toEqual([citaMock]);
+  });
 
+  it('deberian llamar a dar Error', () => {
+    const formBuilder = new FormBuilder();
+    const form = formBuilder.group({
+      idPaciente: ['',],
+      tipoProcedimiento: [''],
+      valor: ['2000'],
+      fecha: [new Date()],
+      hora: ['', ]
+    });
+    agendarCitaComponent.form = form;
+    console.log(agendarCitaComponent.form.valid);
+
+    const errorResponse = new HttpErrorResponse({ status: 400, error: {mensaje: 'error'}});
+    citaServiceSpy.crearCita.and.returnValue(throwError(errorResponse));
+    agendarCitaComponent.guardarCita();
+    expect(citaServiceSpy.crearCita).toHaveBeenCalled();
+  });
 });
+

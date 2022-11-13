@@ -85,7 +85,7 @@ export class AgendarCitaComponent implements OnInit {
   }
 
   mostrarError(error){
-      Swal.fire({
+       Swal.fire({
         icon: 'error',
         title: 'Oops...',
         text: error.mensaje

@@ -1,13 +1,13 @@
 import { of } from 'rxjs';
 import { BuscarCitasComponent } from './buscar-citas.component';
-import {  TestBed } from '@angular/core/testing';
+import {  ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CitaService } from '@core/services/cita/cita.service';
 
 describe('BuscarCitasComponent', () => {
   let citaServiceSpy: jasmine.SpyObj<CitaService>; //servicio a mockear
   let buscarCitasComponent : BuscarCitasComponent;
-
+  let fixture: ComponentFixture<BuscarCitasComponent>;
 
 
   beforeEach(async () => {
@@ -45,6 +45,25 @@ describe('BuscarCitasComponent', () => {
     citaServiceSpy.getCitas.and.returnValue(of(data));
 
     buscarCitasComponent.obtenerCitas();
+    expect(buscarCitasComponent.dataSource.data).toEqual(data);
+  });
+
+  it('deberia filtrar una cita', () => {
+
+    const data = [{ id: 1, estado: 'NO_ATENDIDA', fecha: new Date(), hora: '15:00:00', idPaciente: 1090, tipoProcedimiento: 'LIMPIEZA', valor: 55000 }]
+    citaServiceSpy.getCitas.and.returnValue(of(data));
+
+    buscarCitasComponent.obtenerCitas();
+    fixture = TestBed.createComponent(BuscarCitasComponent);
+    buscarCitasComponent = fixture.componentInstance;
+    fixture.detectChanges();
+
+    const debugElementBuscar = fixture.debugElement;
+    const elementoBuscar = debugElementBuscar.nativeElement;
+    const input = elementoBuscar.querySelector('input');
+    input.value = '1'
+
+    buscarCitasComponent.filtrar();
     expect(buscarCitasComponent.dataSource.data).toEqual(data);
   });
 });

@@ -32,8 +32,8 @@ export class BuscarCitasComponent implements OnInit {
     this.obtenerCitas();
   }
 
-  filtrar(event: Event) {
-    const filtro = (event.target as HTMLInputElement).value;
+  filtrar() {
+    const filtro = document.querySelector('input').value;
     this.dataSource.filter = filtro.trim().toLowerCase();
   }
 

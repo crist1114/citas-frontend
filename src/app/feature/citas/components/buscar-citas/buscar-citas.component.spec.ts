@@ -9,7 +9,6 @@ describe('BuscarCitasComponent', () => {
   let buscarCitasComponent : BuscarCitasComponent;
   let fixture: ComponentFixture<BuscarCitasComponent>;
 
-
   beforeEach(async () => {
 
     const spy = jasmine.createSpyObj('CitaService', ['getCitas', 'cancelarCita']);
@@ -24,7 +23,6 @@ describe('BuscarCitasComponent', () => {
 
     buscarCitasComponent = TestBed.inject(BuscarCitasComponent)
     citaServiceSpy = TestBed.inject(CitaService) as jasmine.SpyObj<CitaService>;
-
   });
 
   it('deberia crearse', () => {
@@ -65,5 +63,10 @@ describe('BuscarCitasComponent', () => {
 
     buscarCitasComponent.filtrar();
     expect(buscarCitasComponent.dataSource.data).toEqual(data);
+  });
+
+  it('deberia filtrar una cita', () => {
+
+
   });
 });

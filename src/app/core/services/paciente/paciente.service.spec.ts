@@ -31,7 +31,6 @@ describe('PacienteService', () => {
     expect(pacienteService).toBeTruthy();
   });
 
-  describe('Pruebas para obtener pacientes', ()=>{
 
     it('deberia obtener un paciente', (doneFn) => {
 
@@ -69,9 +68,7 @@ describe('PacienteService', () => {
       const req = httpController.expectOne(`${environment.endpoint}/paciente/`);
       req.flush(mock);
     });
-  });
 
-  describe('Pruebas para crear un paciente', ()=>{
 
     it('deberia crear un paciente', (doneFn) => {
 
@@ -91,10 +88,6 @@ describe('PacienteService', () => {
       req.flush(res);
     });
 
-  });
-
-  describe('Prueba para crear una historia', ()=>{
-
     it('deberia crear historia', (doneFn) => {
 
       //Arrange
@@ -111,5 +104,5 @@ describe('PacienteService', () => {
       const req = httpController.expectOne(`${environment.endpoint}/historia`);
       req.flush(res);
     });
-  })
+
 });

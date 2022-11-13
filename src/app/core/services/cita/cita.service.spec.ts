@@ -29,7 +29,6 @@ describe('CitaService', () => {
     expect(citaService).toBeTruthy();
   });
 
-  describe('Pruebas para el metodo obtener citas', ()=>{
 
     it('deberia obtener lista de citas', (doneFn) => {
       //Arrange
@@ -88,9 +87,6 @@ describe('CitaService', () => {
       req.flush(mockDatos);
     });
 
-  });
-
-  describe('Pruebas para el metodo crear citas', ()=>{
 
     it('deberia crear una nueva cita', (doneFn) => {
       //Arrange
@@ -118,7 +114,7 @@ describe('CitaService', () => {
       expect(req.request.method).toEqual('POST');
     });
 
-  });
+
 
 });
 

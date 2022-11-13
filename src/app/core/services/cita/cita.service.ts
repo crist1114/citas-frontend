@@ -22,9 +22,9 @@ export class CitaService {
   }
 
   cancelarCita(id:number){
-    return this.http.post(`${environment.endpoint}/cita/cancelar/${id}`, {});
+    return this.http.post(`${environment.endpoint}/cita/cancelar/`, {idCita: id});
   }
   confirmarCita(id:number){
-    return this.http.post(`${environment.endpoint}/cita/confirmar/${id}`, {});
+    return this.http.post(`${environment.endpoint}/cita/confirmar/`, {idCita: id});
   }
 }

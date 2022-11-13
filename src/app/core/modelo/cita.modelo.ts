@@ -1,5 +1,5 @@
 export interface Cita{
-    id: number;
+    id?: number;
 		idPaciente: number;
 		tipoProcedimiento: string;
 		fecha: Date;

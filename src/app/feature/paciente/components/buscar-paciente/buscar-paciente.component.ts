@@ -18,7 +18,7 @@ export interface PeriodicElement {
 export class BuscarPacienteComponent implements OnInit{
 
   displayedColumns: string[] = ['Identificacion', 'Nombre', 'Tipo'];
-  dataSource:any;
+  dataSource:MatTableDataSource<Paciente>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   ELEMENT_DATA: Paciente[] = [];
 

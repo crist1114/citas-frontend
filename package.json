@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --proxy-config proxy.conf.json -o ",
+    "start": "ng serve --proxy-config ./proxy.conf.json",
     "build": "ng build --configuration production",
     "build:stats": "ng build --configuration production --stats-json",
     "analyze": "webpack-bundle-analyzer dist/app-base/stats.json",
@@ -49,6 +49,7 @@
     "@badeball/cypress-cucumber-preprocessor": "^11.5.1",
     "@cypress/schematic": "^2.0.0",
     "@cypress/webpack-preprocessor": "^5.12.0",
+    "@faker-js/faker": "^7.6.0",
     "@stryker-mutator/core": "^6.0.2",
     "@stryker-mutator/karma-runner": "^6.0.2",
     "@stryker-mutator/typescript-checker": "^6.0.2",

@@ -38,7 +38,6 @@ export class CrearPacienteComponent implements OnInit {
     }else{
        this.form.markAllAsTouched();
     }
-
   }
 
   private construirFormulario(){

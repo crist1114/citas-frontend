@@ -54,6 +54,7 @@ export class BuscarCitasComponent implements OnInit {
   }
 
   confirmar(id:number){
+
     this.citaService.confirmarCita(id)
     .subscribe(() => {
       window.location.reload();

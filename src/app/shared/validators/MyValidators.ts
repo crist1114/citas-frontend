@@ -20,7 +20,7 @@ export class MyValidators {
           return null;
         })
       );
-    }
+    };
   }
 
   static validarDia(control: AbstractControl){
@@ -48,7 +48,7 @@ export class MyValidators {
           return null;
         })
       );
-    }
+    };
   }
 
 

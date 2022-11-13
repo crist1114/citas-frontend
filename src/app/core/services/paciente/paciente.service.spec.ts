@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 
 import { PacienteService } from './paciente.service';
 
-fdescribe('PacienteService', () => {
+describe('PacienteService', () => {
   let pacienteService: PacienteService;
   let httpController : HttpTestingController;
 
@@ -94,7 +94,7 @@ fdescribe('PacienteService', () => {
   });
 
   describe('Prueba para crear una historia', ()=>{
-    
+
     it('deberia crear historia', (doneFn) => {
 
       //Arrange

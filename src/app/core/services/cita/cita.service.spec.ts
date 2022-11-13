@@ -114,6 +114,23 @@ describe('CitaService', () => {
       expect(req.request.method).toEqual('POST');
     });
 
+    it('deberia cancelar una cita', (doneFn) => {
+      //Arrange
+      const id = 10;
+      // const body = {idCita: id}
+      //Act
+      citaService.cancelarCita(id)
+      .subscribe(()=>{
+
+        doneFn();
+      });
+
+      //http config
+      const req = httpController.expectOne(`${environment.endpoint}/cita/cancelar/`);
+      req.flush(id);
+      expect(req.request.method).toEqual('POST');
+    });
+
 
 
 });

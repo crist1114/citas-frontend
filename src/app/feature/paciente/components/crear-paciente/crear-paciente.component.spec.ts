@@ -3,7 +3,6 @@ import { PacienteService } from '@core/services/paciente/paciente.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ReactiveFormsModule, FormsModule, FormBuilder } from '@angular/forms';
-import { HttpService } from 'src/app/core/services/http.service';
 
 import { CrearPacienteComponent } from './crear-paciente.component';
 import { MatIconModule } from '@angular/material/icon';
@@ -24,7 +23,6 @@ describe('CrearPacienteComponent', () => {
         MatIconModule
       ],
       providers: [
-        HttpService,
         PacienteService
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]

@@ -29,7 +29,7 @@ export class AgendarCitaComponent implements OnInit {
   maxDate = new Date();
 
   constructor(private formBuilder: FormBuilder, private pacienteService: PacienteService,
-    private citaService: CitaService, private router : Router
+    private citaService: CitaService, private router: Router
   ) {
     this.construirFormulario();
   }
@@ -45,19 +45,23 @@ export class AgendarCitaComponent implements OnInit {
   }
 
   cargarHoras() {
+    console.log(this.citasPorFecha);
 
     let horasNoDisp = this.citasPorFecha.map((item) => item.hora);
+    console.log('horas no disp ',horasNoDisp);
+
     this.horasDisp = [];
     for (let i = INICIO_HORARIO; i <= LIMITE_HORARIO; i++) {
+      const hora : string = i < INICIO_HORAS_CON_CERO ? `0${i}:00:00` : `${i}:00:00`;
 
-      if (!horasNoDisp.includes(i + ':00:00')) {
-        const hora = i < INICIO_HORAS_CON_CERO ? `0${i}:00` : `${i}:00`;
+      if (!horasNoDisp.includes(hora)) {
         this.horasDisp.push(hora);
       }
     }
   }
 
   consultarPorFecha(fecha) {
+
     fecha = moment(fecha).format('YYYY-MM-DD');
     this.citaService.getCitasPorFecha(fecha)
       .subscribe(data => {
@@ -74,8 +78,8 @@ export class AgendarCitaComponent implements OnInit {
 
       this.citaService.crearCita(this.form.value)
         .subscribe({
-          next : ()=> this.router.navigate(['../../../citas/buscar-cita']),
-          error: (e)=> this.mostrarError(e.error),
+          next: () => this.router.navigate(['../../../citas/buscar-cita']),
+          error: (e) => this.mostrarError(e.error),
         });
     }
     else {
@@ -84,12 +88,12 @@ export class AgendarCitaComponent implements OnInit {
 
   }
 
-  mostrarError(error){
-       Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: error.mensaje
-      });
+  mostrarError(error) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: error.mensaje
+    });
   }
 
   private construirFormulario() {

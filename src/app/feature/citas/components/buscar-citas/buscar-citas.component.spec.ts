@@ -65,8 +65,13 @@ describe('BuscarCitasComponent', () => {
     expect(buscarCitasComponent.dataSource.data).toEqual(data);
   });
 
-  it('deberia filtrar una cita', () => {
+  fit('deberia cancelar la cita', ()=>{
 
+    spyOn(window.location, 'reload');
+    buscarCitasComponent.cancelar(2);
 
-  });
+    expect(window.location).toHaveBeenCalled();
+
+  })
+
 });
